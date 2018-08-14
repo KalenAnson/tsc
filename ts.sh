@@ -5,7 +5,7 @@
 # Seconds conversion helper
 convertsecs() {
 	((h=${1}/3600))
-	((m=(${1}%3600)/60))
+	((m=${1}%3600/60))
 	((s=${1}%60))
 	printf "%02d:%02d:%02d\n" $h $m $s
 }
@@ -56,7 +56,7 @@ do
 		echo "$var -> $dt"
 	fi
 done
-# For fun, if stdout is a pipe, add the current timestamp otherwise 
+# For fun, if stdout is a pipe, add the current timestamp otherwise
 # show the duration if there were more than 2 dissimilar times
 if [[ -p /dev/stdout ]]; then
 	date +%s
