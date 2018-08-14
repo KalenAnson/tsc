@@ -1,7 +1,7 @@
 #!/bin/sh
 # ø
 # Timestamp helper
-#
+stamps=""
 # Seconds conversion helper
 convertsecs() {
 	((h=${1}/3600))
@@ -14,16 +14,22 @@ convertsecs() {
 if [ -z "$1" ]; then
 	# Read from pipe
     if [ -p /dev/stdin ]; then
-        read -ra stamps
+		read line
+		stamps=($line);
+		# n=0
+		# while IFS=' ' read line; do
+		# 	echo "$line"
+		# 	stamps[$n]=$(($line + 0))
+		# 	let n=$n+1
+		# done;
+        #read -ra stamps
     else
 		date +%s
         exit
     fi
-else
-	stamps=""
 fi
 # Process variables if stdin is not a pipe
-if [ -z $stamps ]; then
+if [ -z "$stamps" ]; then
 	echo "Processing args"
 	stamps=$@
 fi
