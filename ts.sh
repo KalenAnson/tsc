@@ -15,14 +15,7 @@ if [ -z "$1" ]; then
 	# Read from pipe
     if [ -p /dev/stdin ]; then
 		read line
-		stamps=($line);
-		# n=0
-		# while IFS=' ' read line; do
-		# 	echo "$line"
-		# 	stamps[$n]=$(($line + 0))
-		# 	let n=$n+1
-		# done;
-        #read -ra stamps
+		stamps=($line)
     else
 		date +%s
         exit
