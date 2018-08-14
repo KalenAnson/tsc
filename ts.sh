@@ -30,11 +30,8 @@ fi
 # Read each timestamp and calculate the max duration
 start=0
 end_t=0
-index=0
 for var in "${stamps[@]}"
 do
-	# Increment counter
-	index=$(($index + 1))
 	# Check start time
 	if [[ "$start" -eq 0 ]]; then
 		start="$var"
