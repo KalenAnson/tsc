@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # ø
 # Timestamp helper
 #
@@ -14,7 +14,7 @@ convertsecs() {
 if [[ -z "$1" ]]; then
 	# Read from pipe
     if [[ -p /dev/stdin ]]; then
-        read -ra stamps
+        IFS=' ' read -ra stamps
     else
 		date +%s
         exit
@@ -23,18 +23,14 @@ else
 	stamps=""
 fi
 # Process variables if stdin is not a pipe
-if [[ -z $stamps ]]; then
-	echo "Processing args"
+if [[ -z "$stamps" ]]; then
 	stamps=$@
 fi
 # Read each timestamp and calculate the max duration
 start=0
 end_t=0
-index=0
 for var in "${stamps[@]}"
 do
-	# Increment counter
-	index=$(($index + 1))
 	# Check start time
 	if [[ "$start" -eq 0 ]]; then
 		start="$var"
