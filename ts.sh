@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # ø
 # Timestamp helper
 stamps=""
@@ -13,18 +13,16 @@ convertsecs() {
 # print the current timestamp and exit
 if [ -z "$1" ]; then
 	# Read from pipe
-    if [ -p /dev/stdin ]; then
-		read line
-		stamps=($line)
+    if [[ -p /dev/stdin ]]; then
+        IFS=' ' read -ra stamps
     else
 		date +%s
         exit
     fi
 fi
 # Process variables if stdin is not a pipe
-if [ -z "$stamps" ]; then
-	echo "Processing args"
-	stamps=$@
+if [[ -z "$stamps" ]]; then
+	stamps=("$@")
 fi
 # Read each timestamp and calculate the max duration
 start=0
@@ -43,7 +41,11 @@ do
 		end_t="$var"
 	fi
 	# Convert the timestamp to human format
-	dt=$(date -r "$var")
+	if [[ $OSTYPE == "linux-gnu" ]]; then
+		dt=$(date -d @"$var")
+	else
+		dt=$(date -r "$var")
+	fi
 	# If stdout is a pipe just echo each timestamp
 	if [ -p /dev/stdout ]; then
 		# This goes to stdout
