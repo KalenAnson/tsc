@@ -43,7 +43,11 @@ do
 		end_t="$var"
 	fi
 	# Convert the timestamp to human format
-	dt=$(date -r "$var")
+	if [[ $OSTYPE == "linux-gnu" ]]; then
+		dt=$(date -d @"$var")
+	else
+		dt=$(date -r "$var")
+	fi
 	# If stdout is a pipe just echo each timestamp
 	if [[ -p /dev/stdout ]]; then
 		# This goes to stdout
