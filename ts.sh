@@ -24,7 +24,7 @@ else
 fi
 # Process variables if stdin is not a pipe
 if [[ -z "$stamps" ]]; then
-	stamps=$@
+	stamps=("$@")
 fi
 # Read each timestamp and calculate the max duration
 start=0
