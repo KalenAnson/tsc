@@ -1,6 +1,7 @@
 #!/bin/bash
 # ø
 # Timestamp helper
+version="0.3.0"
 stamps=""
 # Seconds conversion helper
 convertsecs() {
@@ -9,6 +10,39 @@ convertsecs() {
 	((s=${1}%60))
 	printf "%02d:%02d:%02d\n" $h $m $s
 }
+# Help
+show_help () {
+	printf "ts UNIX timestamp utility\n\n"
+	printf "Usage:\n\n"
+	printf "\tts -hv [timestamp ...] \n\n"
+	printf "Options:\n\n"
+	printf "\t-h -?\t\t\tShows this help\n"
+	printf "\t-v \t\t\tPrint version and exit\n\n"
+	printf "Usage:\n\n"
+	printf "\tts (no arguments)\tPrint the current timestamp to stdout\n"
+	printf "\tts [timestamp]\t\tConvert timestamp to local time\n"
+	printf "\tts [ts ... ts]\t\tConvert timestamps and calculate duration\n"
+}
+# Version
+show_version () {
+	printf "ts version: %s\n" "$version"
+}
+################################################################################
+### Process Args
+################################################################################
+while getopts "h?v" opt; do
+    case "$opt" in
+    h|\?)
+        show_help
+        exit 0
+        ;;
+	v)	show_version
+		exit 0
+		;;
+    esac
+done
+shift $((OPTIND-1))
+[ "$1" = "--" ] && shift
 # If there are no args passed on the command line either read from stdin or
 # print the current timestamp and exit
 if [ -z "$1" ]; then
