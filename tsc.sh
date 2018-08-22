@@ -1,7 +1,7 @@
 #!/bin/bash
 # ø
-# Timestamp helper
-version="0.3.0"
+# UNIX Timestamp conversion helper
+version="0.4.0"
 stamps=""
 # Seconds conversion helper
 convertsecs() {
@@ -12,20 +12,20 @@ convertsecs() {
 }
 # Help
 show_help () {
-	printf "ts UNIX timestamp utility\n\n"
+	printf "tsc UNIX timestamp conversion utility\n\n"
 	printf "Usage:\n\n"
-	printf "\tts -hv [timestamp ...] \n\n"
+	printf "\ttsc -hv [timestamp ...] \n\n"
 	printf "Options:\n\n"
 	printf "\t-h -?\t\t\tShows this help\n"
 	printf "\t-v \t\t\tPrint version and exit\n\n"
 	printf "Usage:\n\n"
-	printf "\tts (no arguments)\tPrint the current timestamp to stdout\n"
-	printf "\tts [timestamp]\t\tConvert timestamp to local time\n"
-	printf "\tts [ts ... ts]\t\tConvert timestamps and calculate duration\n"
+	printf "\ttsc (no arguments)\tPrint the current timestamp to stdout\n"
+	printf "\ttsc [timestamp]\t\tConvert timestamp to local time\n"
+	printf "\ttsc [ts ... ts]\t\tConvert timestamps and calculate duration\n"
 }
 # Version
 show_version () {
-	printf "ts version: %s\n" "$version"
+	printf "tsc version: %s\n" "$version"
 }
 ################################################################################
 ### Process Args
