@@ -1,7 +1,7 @@
 #!/bin/bash
 # ø
 # UNIX Timestamp conversion helper
-version="0.4.0"
+version="0.5.0"
 stamps=""
 # Seconds conversion helper
 convertsecs() {
