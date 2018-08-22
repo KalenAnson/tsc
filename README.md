@@ -23,7 +23,7 @@
 		1534947904 -> Wed Aug 22 10:25:04 EDT 2018
 		Duration: 00:01:00
 
-	`ts` is also a first class utility, so it plays nicely with pipelines. Here we diff a timestamp and 'now' calculating the duration in elapsed time.
+	`ts` is also a first class utility, so it plays nicely with pipelines. Here we diff a timestamp and 'now', calculating the duration in elapsed time.
 
 		$ ts 1534947844 | ts
 		1534947844 -> Wed Aug 22 10:24:04 EDT 2018
@@ -37,14 +37,6 @@
 		1534947904 -> Wed Aug 22 10:25:04 EDT 2018
 		1534948588 -> Wed Aug 22 10:36:28 EDT 2018
 		Duration: 00:12:24
-
-	Or with pipelines:
-
-		$ ts | ts | ts | ts
-		1534948773 -> Wed Aug 22 10:39:33 EDT 2018
-		1534948773 -> Wed Aug 22 10:39:33 EDT 2018
-		1534948773 -> Wed Aug 22 10:39:33 EDT 2018
-		Duration: 00:00:00
 
 ## Installation
 1. Clone this repo in your projects `/` development directory. I will demonstrate installation using `~/Development/ts`
@@ -103,7 +95,7 @@ When reading from `stdin`, `ts` needs to be invoked without arguments. It will a
 
 	ts | something
 
-When `ts` is in front of a pipe, its behavior changes and it will simply echo its arguments along _and add the current UNIX timestamp as the last value_, delineated by spaces. A contrived example:
+When `ts` is in front of a pipe, its behavior changes and it will echo its arguments along __adding the current UNIX timestamp as the last value__, delineated by spaces. A contrived example:
 
 	$ echo 1534947844 1534947904 1534948588 | ts | cat
 	1534947844 1534947904 1534948588 1534950177
@@ -130,4 +122,4 @@ The advanced behavior of `ts` was developed for fun and to facilitate some of th
 		1534950565 -> Wed Aug 22 11:09:25 EDT 2018
 		Duration: 00:45:21
 
-Hope you enjoy. Pull requests welcome.
+Hope you enjoy. Pull requests and feature requests are welcome.
